@@ -366,7 +366,11 @@ angular.module('mgcrea.ngStrap.datepicker', [
 
         // Watch model for changes
         scope.$watch(attr.ngModel, function (newValue, oldValue) {
-          datepicker.update(controller.$dateValue);
+          if (!newValue) {
+            datepicker.update(new Date())
+          } else {
+            datepicker.update(controller.$dateValue);
+          }
         }, true);
 
         // Normalize undefined/null/empty array,
